@@ -5,6 +5,7 @@ import string
 from time import sleep
 import json
 import requests
+from datetime import datetime
 
 
 
@@ -19,12 +20,19 @@ print(f"\n{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Generat
 sleep(1)
 
 fulla = amount
+date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
 
-f = open(f"invites.txt","w+", encoding="UTF-8")
+
+f = open(f"invites.txt","a", encoding="UTF-8")
+
 p = open(f"proxies.txt", encoding="UTF-8")
+
 rproxy = p.read().split('\n')
 
 while amount > 0:
+    if not rproxy[0]:
+        print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}All proxies are invalid!{Fore.WHITE}")
+        exit()
     proxi = random.choice(rproxy)
     proxies = {
         "https": proxi
@@ -44,8 +52,14 @@ while amount > 0:
             fulla = fulla - 1
             print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Invalid Invite {Fore.WHITE}{code}")
     except:
+        index = rproxy.index(proxi)
+        del rproxy[index]
+        pw = open(f"proxies.txt","w", encoding="UTF-8")
+        for i in rproxy:
+            pw.write(i + "\n")
+        pw.close()
         fulla = fulla - 1
-        print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Failed connecting to proxy {Fore.WHITE}{proxi}")
+        print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Failed connecting to proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} | Removing from list")
         pass
 
 
