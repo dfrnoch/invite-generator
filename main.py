@@ -2,10 +2,8 @@ import os
 from colorama import Fore
 import random
 import string
-from time import sleep
 import json
 import requests
-from datetime import datetime
 
 
 
@@ -17,11 +15,8 @@ amount = int(input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLA
 
 
 print(f"\n{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Generating {Fore.WHITE}{amount}{Fore.LIGHTBLACK_EX} invites!")
-sleep(1)
 
 fulla = amount
-date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
-
 
 
 p = open(f"proxies.txt", encoding="UTF-8")
