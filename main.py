@@ -23,13 +23,14 @@ fulla = amount
 date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
 
 
-f = open(f"invites.txt","a", encoding="UTF-8")
 
 p = open(f"proxies.txt", encoding="UTF-8")
+
 
 rproxy = p.read().split('\n')
 
 while amount > 0:
+    f = open(f"invites.txt","a", encoding="UTF-8")
     if not rproxy[0]:
         print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}All proxies are invalid!{Fore.WHITE}")
         exit()
@@ -47,7 +48,8 @@ while amount > 0:
             gname = ginfo["name"]
             members = jurl["approximate_member_count"]
             print(f"{Fore.WHITE}[ {Fore.GREEN}+ {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Working Invite {Fore.WHITE}{code}{Fore.LIGHTBLACK_EX} | Name {Fore.WHITE}{gname}{Fore.LIGHTBLACK_EX} | {Fore.WHITE}{members}{Fore.LIGHTBLACK_EX} members")
-            f.write(f"discord.gg/{code}     |     {members}     |     {gname}\n")
+            f.write(f"\ndiscord.gg/{code}     |     {members}     |     {gname}")
+            f.close()
         else:
             fulla = fulla - 1
             print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Invalid Invite {Fore.WHITE}{code}")
@@ -62,8 +64,4 @@ while amount > 0:
         print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Failed connecting to proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} | Removing from list")
         pass
 
-
-
 print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Succefully generated {Fore.WHITE}{fulla} {Fore.LIGHTBLACK_EX}working invites!{Fore.WHITE}")
-
-    
