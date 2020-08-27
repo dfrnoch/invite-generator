@@ -11,24 +11,30 @@ os.system("cls")
 print(f"{Fore.WHITE}[ {Fore.CYAN}§ {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Discord Invite Generator + Checker made by {Fore.WHITE}LnX{Fore.LIGHTBLACK_EX} | Licensed under {Fore.WHITE}MIT {Fore.LIGHTBLACK_EX}License")
 print(f"{Fore.WHITE}[ {Fore.CYAN}§ {Fore.WHITE}] {Fore.LIGHTBLACK_EX}You can follow me on Github: {Fore.WHITE}https://github.com/lnxcz")
 auto = input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Auto scrape proxies {Fore.WHITE}(yes/no){Fore.LIGHTBLACK_EX}: {Fore.WHITE}")
-amount = int(input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}How much invites will be generated: {Fore.WHITE}"))
 
 def scrape():
+    scraped = 0
     f = open("proxies.txt", "a+")
     f.truncate(0)
-    r = requests.get('https://api.proxyscrape.com/?request=displayproxies&proxytype=http&timeout=1800&ssl=yes')
+    r = requests.get('https://api.proxyscrape.com/?request=displayproxies&proxytype=http&timeout=1500&ssl=yes')
     proxies = []
     for proxy in r.text.split('\n'):
         proxy = proxy.strip()
         if proxy:
             proxies.append(proxy)
     for p in proxies:
+        scraped = scraped + 1 
         f.write((p)+"\n")
     f.close()
+    print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Scraped {Fore.WHITE}{scraped} {Fore.LIGHTBLACK_EX}proxies.")
 
 
 if auto == "yes":
     scrape()
+
+
+amount = int(input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}How much invites will be generated: {Fore.WHITE}"))
+
 
 
 
