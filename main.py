@@ -71,6 +71,9 @@ while amount > 0:
             print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Proxy {Fore.WHITE}{proxi} is ratelimited")
             index = rproxy.index(proxi)
             del rproxy[index]
+        else:
+            fulla = fulla - 1
+            print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Invalid Error! | Status code {Fore.WHITE}{url.status_code}")
     except:
         index = rproxy.index(proxi)
         del rproxy[index]
