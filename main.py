@@ -1,9 +1,8 @@
 import os
-from colorama import Fore
 import random
 import string
-import json
 import requests
+from colorama import Fore
 
 
 os.system("cls")
@@ -89,6 +88,5 @@ while amount > 0:
         pw.close()
         fulla = fulla - 1
         print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Failed connecting to proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} | Removing from list!")
-        pass
 
 print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Succefully generated {Fore.WHITE}{fulla} {Fore.LIGHTBLACK_EX}working invites!{Fore.WHITE}")
