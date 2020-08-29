@@ -43,10 +43,18 @@ p = open(f"proxies.txt", encoding="UTF-8")
 
 
 rproxy = p.read().split('\n')
+for i in rproxy:
+    if i == "" or i == " ":
+        index = rproxy.index(i)
+        del rproxy[index]
 
 while amount > 0:
     f = open(f"invites.txt","a", encoding="UTF-8")
-    if not rproxy[0]:
+    try:
+        if not rproxy[0]:
+            print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}All proxies are invalid!{Fore.WHITE}")
+            exit()
+    except:
         print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}All proxies are invalid!{Fore.WHITE}")
         exit()
     proxi = random.choice(rproxy)
