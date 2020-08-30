@@ -1,9 +1,9 @@
 import os
-from colorama import Fore
 import random
 import string
 import json
 import requests
+from colorama import Fore
 
 
 os.system("cls")
@@ -12,6 +12,8 @@ print(f"{Fore.WHITE}[ {Fore.CYAN}§ {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Discord In
 print(f"{Fore.WHITE}[ {Fore.CYAN}§ {Fore.WHITE}] {Fore.LIGHTBLACK_EX}You can follow me on Github: {Fore.WHITE}https://github.com/lnxcz")
 amount = int(input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}How much invites will be generated: {Fore.WHITE}"))
 auto = input(f"\n{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Auto scrape proxies {Fore.WHITE}(yes/no){Fore.LIGHTBLACK_EX}: {Fore.WHITE}")
+print(f"\n{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}If no, every check will be on random proxy.")
+mult = input(f"{Fore.WHITE}[ {Fore.YELLOW}> {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Multiple checks for proxy {Fore.WHITE}(yes or no){Fore.LIGHTBLACK_EX}: {Fore.WHITE}")
 
 def scrape():
     scraped = 0
@@ -48,6 +50,7 @@ for i in rproxy:
         index = rproxy.index(i)
         del rproxy[index]
 
+
 while amount > 0:
     f = open(f"invites.txt","a", encoding="UTF-8")
     try:
@@ -57,7 +60,10 @@ while amount > 0:
     except:
         print(f"{Fore.WHITE}[ {Fore.RED}! {Fore.WHITE}] {Fore.LIGHTBLACK_EX}All proxies are invalid!{Fore.WHITE}")
         exit()
-    proxi = random.choice(rproxy)
+    if mult == "yes":
+        proxi = rproxy[0]
+    else:
+        proxi = random.choice(rproxy)
     proxies = {
         "https": proxi
     }
@@ -78,7 +84,10 @@ while amount > 0:
             print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Invalid Invite {Fore.WHITE}{code}")
         elif url.status_code == 429:
             fulla = fulla - 1
-            print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Proxy {Fore.WHITE}{proxi} is ratelimited")
+            if mult == "yes":
+                    print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} is ratelimited! | Switching proxy")
+            else:
+                print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} is ratelimited!")
             index = rproxy.index(proxi)
             del rproxy[index]
         else:
