@@ -9,6 +9,6 @@
 4. All set :)
 
 ## Showcase:
-![Showcase](https://i.imgur.com/JTkMdFV.png)
+![Showcase](https://i.imgur.com/moRddPH.png)
 
 `WARN: For educational purposes only`
