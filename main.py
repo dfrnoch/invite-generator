@@ -112,4 +112,3 @@ print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Succefull
 
 
 
-
