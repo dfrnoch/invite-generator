@@ -41,7 +41,12 @@ print(f"\n{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Generat
 fulla = amount
 
 
-p = open(f"proxies.txt", encoding="UTF-8")
+try:
+    p = open("proxies.txt", encoding="UTF-8")
+except FileNotFoundError:
+    p = open("proxies.txt", "w+", encoding="UTF-8")
+    print(f"{Fore.WHITE}[{Fore.RED} ! {Fore.WHITE}]{Fore.LIGHTBLACK_EX} No proxies found in {Fore.WHITE}proxies.txt!{Fore.WHITE}")
+    raise SystemExit
 
 
 rproxy = p.read().split('\n')
@@ -49,6 +54,11 @@ for i in rproxy:
     if i == "" or i == " ":
         index = rproxy.index(i)
         del rproxy[index]
+p.close()
+
+if not rproxy:
+    print(f"{Fore.WHITE}[{Fore.RED} ! {Fore.WHITE}]{Fore.LIGHTBLACK_EX} No proxies found in {Fore.WHITE}proxies.txt!{Fore.WHITE}")
+    raise SystemExit
 
 
 while amount > 0:
@@ -103,12 +113,7 @@ while amount > 0:
         fulla = fulla - 1
         print(f"{Fore.WHITE}[ {Fore.RED}- {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Failed connecting to proxy {Fore.WHITE}{proxi}{Fore.LIGHTBLACK_EX} | Removing from list!")
         pass
+f.close()
+print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Successfully generated {Fore.WHITE}{fulla} {Fore.LIGHTBLACK_EX}codes!{Fore.WHITE}")
 
-print(f"{Fore.WHITE}[ {Fore.YELLOW}? {Fore.WHITE}] {Fore.LIGHTBLACK_EX}Succefully generated {Fore.WHITE}{fulla} {Fore.LIGHTBLACK_EX}working invites!{Fore.WHITE}")
-
-
-
-
-
-
-
+input()
